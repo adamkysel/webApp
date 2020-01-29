@@ -1,0 +1,10 @@
+.wrapper{
+    position: center;
+    margin-top: 54px;
+    padding: 20px 20px 20px 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: large;
+    text-align: center;
+    border-radius: 9%;
+}

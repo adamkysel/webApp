@@ -25,3 +25,11 @@
     .jumbotron .lang-logo img {
       max-width: 100%; }
 
+      .wrapper{
+        margin-top: 54px;
+        padding: 20px 20px 20px 20px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+    
+    }
+

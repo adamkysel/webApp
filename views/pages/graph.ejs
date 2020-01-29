@@ -7,12 +7,14 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../stylesheets/my.css">
     <title>Zahrada</title>
   </head>
   <body>
     <div class="container">
       <h1>Smart garden</h1>
-      <p><%= temp %></p>
+      <p class="wrapper col-lg-2 center" id="motor1">state</p>
+      <button id="openButton1" type="button" class="btn btn-success">Open/Close</button>
       <canvas id="myChart">Teplota</canvas>
         </div>
     
@@ -26,26 +28,57 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
       var dato = "<%= temp %>".split(",");
-      var tr = typeof(dato);
       var ctx = document.getElementById('myChart').getContext('2d');
       var chart = new Chart(ctx, {
-      // The type of chart we want to create
-      type: 'line',
+        // The type of chart we want to create
+        type: 'line',
 
-      // The data for our dataset
-      data: {
-        labels: [1,2,3,4,5,6,7],
-        datasets: [{
-            label: 'Temperature',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: dato
-        }]
-    },
+        // The data for our dataset
+        data: {
+          labels: [1,2,3,4,5,6,7],
+          datasets: [{
+              label: 'Temperature',
+              backgroundColor: 'rgb(255, 99, 132)',
+              borderColor: 'rgb(255, 99, 132)',
+              data: dato
+          }]
+      },
+      // Configuration options go here
+      options: {}
+    }); 
+    const opnButton1 = document.getElementById('openButton1');
+    
+    opnButton1.addEventListener('click', function(e) {
+      console.log('open1');
 
-    // Configuration options go here
-    options: {}
-}); 
+      fetch('/open1', {method: 'POST'})
+        .then(function(response) {
+          if(response.ok) {
+            console.log('open ok');
+            return;
+          }
+          throw new Error('Request failed.');
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    });
+
+    setInterval(function() {
+      fetch('/state1', {method: 'GET'})
+        .then(function(response) {
+          if(response.ok) return response.json();
+          throw new Error('Request failed.');
+        })
+        .then(function(data) {
+          document.getElementById("motor1").innerHTML = data.state;
+          console.log(data);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }, 1000);
+
     </script>
   </body>
 </html>
