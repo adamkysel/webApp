@@ -1,10 +1,124 @@
+.navbar-custom {
+    background-color: 	#80ff80;
+    font-size: x-large;
+    color: white;
+}
+
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: white;
+    font-size: x-large;
+
+}
+
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #ffffff;
+}
+
+/* for dropdown only - change the color of droodown */
+.navbar-custom .dropdown-menu {
+    background-color: 	#80ff80;
+}
+
+.navbar-custom .dropdown-item {
+    color: #ffffff;
+}
+
+.navbar-custom .dropdown-item:hover,
+.navbar-custom .dropdown-item:focus {
+    color: #191919;
+    background-color: #191919);
+}
 .wrapper{
     position: center;
-    margin-top: 54px;
+    margin: auto;
     padding: 20px 20px 20px 20px;
     background: rgba(0, 0, 0, 0.7);
     color: white;
     font-size: large;
     text-align: center;
     border-radius: 9%;
+    width: 50%;
+}
+.wrapper1{
+    background-image: linear-gradient(to right, #57ec70 , 	  #f8f814);    width: auto;
+    border-radius: 5%;
+    padding: 2%, 2%, 2%, 2%;
+    color: white;
+    text-align: center;
+    padding: 20px 20px 20px 20px;
+    margin: 2% auto 2% auto;
+}
+.wrapper2{
+    background-image: linear-gradient(to right, deepskyblue , lightblue);    width: auto;
+    border-radius: 5%;
+    padding: 2%, 2%, 2%, 2%;
+    color: white;
+    text-align: center;
+    padding: 20px 20px 20px 20px;
+    margin: 2% auto 2% auto;
+}
+.wrapper3{
+    background-color: white;
+    border-radius: 5%;
+    padding: 2%, 2%, 2%, 2%;
+    color: black;
+    text-align: center;
+    padding: 20px 20px 20px 20px;
+    margin: 2% auto 2% auto;
+}
+
+.section1{
+    background-color: #babc91;
+    color: white;
+    text-align: center;
+}
+.section2{
+    background-color:#5f8838;
+    color: white;
+    text-align: center;
+   
+}
+.value{
+    background-color: chartreuse;
+    position: center;
+    margin-top: 54px;
+    padding: 20px 20px 20px 20px;
+    color: white;
+    font-size: large;
+    text-align: center;
+    border-radius: 50%;
+}
+html, body{
+    background-color: #e6e6e6;
+    color: grey;
+}
+.custom-btn {
+    margin-top: 10px;
+    color: white;
+	background-color: deepskyblue;
+	border-color: deepskyblue;
+}
+.wrapper-title { 
+    font-size: 40px; 
+    font-weight: normal;  
+    margin-top: 10px; 
+    margin-bottom: 0; 
+    text-align: center; 
+    color: white; 
+}
+.wrapper-text { 
+    font-size: 16px; 
+    font-weight: normal;  
+    margin-top: 10px; 
+    margin-bottom: 0; 
+    text-align: center; 
 }
