@@ -4,12 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
     <link rel="stylesheet" href="../stylesheets/my.css">
     <title>Zahrada</title>
   </head>
@@ -18,85 +15,101 @@
       <div class="container">
         <a class="navbar-brand" href="#">Záhrada</a>
       </div>
-    </nav>
-
-      
+    </nav>  
         <div class="container">
           <div class="row">
             <div class="wrapper1 col-lg-3 col-sm-10 col-md-10">
               <h2 class="wrapper-title">Dvere</h2>
-              <div class="wrapper-text" id="motor1">Aktuálne: </div>
+              <div class="wrapper-text">Aktuálne: <strong id="motor1"></strong></div>
+              <form method="POST" action="/door_set" id="doorForm">
+                <div class="form-group">
+                  <label for="usr">Čas otvárania: <strong id="timeOpe1"></strong></label>
+                  <input type="time" class="form-control" id="timeOpen1" name="doorOpen">
+                </div>
+                <div class="form-group">
+                  <label for="usr">Čas zatvárania: <strong id="timeClos1"></strong></label>
+                  <input type="time" class="form-control" id="timeClose1" name="doorClose">
+                </div>
+                <div class="form-group">
+                  <label for="usr">Minimálna teplota [°C]: <strong id="minTem1"></strong></label>
+                  <input type="number" class="form-control" id="minTemp1" name="minTempDoor">
+                </div>
+              </form>
+              <button id="doorSub" type="button" class="btn custom-btn">Nastaviť</button>
               <button id="button1" type="button" class="btn custom-btn">Otvoriť</button>
             </div>
             <div class="wrapper1 col-lg-3 col-sm-10 col-md-10">
               <h2 class="wrapper-title">Okno</h2>
-              <div class="wrapper-text" id="motor2">Aktuálne: </div>
+              <div class="wrapper-text">Aktuálne: <strong id="motor2"></strong></div>
+              <form method="POST" action="/window_set" id="windowForm">
+                <div class="form-group">
+                  <label>Čas otvárania: <strong id="timeOpe2"></strong></label>
+                  <input type="time" class="form-control" id="timeOpen2" name="windowOpen">
+                </div>
+                <div class="form-group">
+                  <label>Čas zatvárania: <strong id="timeClos2"></strong></label>
+                  <input type="time" class="form-control" id="timeClose2" name="windowClose">
+                </div>
+                <div class="form-group">
+                  <label>Minimálna teplota [°C]: <strong id="minTem2"></strong></label>
+                  <input type="number" class="form-control" id="minTemp2" name="minTempWinndow">
+                </div>
+              </form>
+              <button id="windowSub" type="button" class="btn custom-btn">Nastaviť</button>
               <button id="button2" type="button" class="btn custom-btn">Otvoriť</button>
             </div>
             <div class="wrapper1 col-lg-3 col-sm-10 col-md-10">
               <h2 class="wrapper-title">Zavlažovanie</h2>
-              <div class="wrapper-text"><br></div>
+              <form method="POST" action="/water_set" id="waterForm">
+                <div class="form-group">
+                  <label for="usr">Čas zavlažovania: <strong id="waterTim"></strong></label>
+                  <input type="time" class="form-control" id="waterTime" name="waterT">
+                </div>
+                <div class="form-group">
+                  <label for="usr">Minimálna vlkosť pôdy [%]: <strong id="minSoi"></strong></label>
+                  <input type="number" class="form-control" id="minSoil" name="minHum" min="0" max="100">
+                </div>
+              </form>
+              <button id="waterSub" type="button" class="btn custom-btn">Nastaviť</button>
               <button id="button3" type="button" class="btn custom-btn">Zavlažiť</button>
-            </div>  
-          </div>
-    
-    
-        <!-- 
-        <div class="row">
-          <div class="wrapper2 col-lg-2">
-            <h2 class="wrapper-title">50 %</h2>
-            <h3 class="wrapper-text">Vlhkosť pôdy 1</h3>
-          </div>
-          <div class="wrapper2 col-lg-2">
-            <h2 class="wrapper-title">40 %</h2>
-            <h3 class="wrapper-text">Vlhkosť pôdy 2</h3>
-          </div>
-          <div class="wrapper2 col-lg-2">
-            <h2 class="wrapper-title">30 %</h2>
-            <h3 class="wrapper-text">Vlhkosť pôdy 3</h3>
-          </div><div class="wrapper2 col-lg-2">
-            <h2 class="wrapper-title">70 %</h2>
-            <h3 class="wrapper-text">Vlhkosť pôdy 4</h3>
-          </div>
-        </div>   
-      -->
+            </div>
+          </div>  
             
       <div class="row">
         <div class="wrapper3 col-lg-5 col-sm-10 col-md-10">
           <canvas id="chartTemp">Teplota [°C]</canvas>
           <canvas>Teplota</canvas>
         </div>
+
         <div class="wrapper3 col-lg-5 col-sm-10 col-md-10">
           <canvas id="chartHum">Vlhkosť [%]</canvas>
           <canvas>Vlhkosť</canvas>
         </div>
-      </div>    
 
-      <div class="row">
         <div class="wrapper3 col-lg-5 col-sm-10 col-md-10">
           <canvas id="chartSoil">Vlhkosť pôdy [%]</canvas>
           <canvas>Vlhkosť pôdy</canvas>
         </div>
+
         <div class="wrapper3 col-lg-5 col-sm-10 col-md-10">
           <canvas id="chartWater">Vlhkosť pôdy [%]</canvas>
           <canvas>Vlhkosť pôdy</canvas>
         </div>
-      </div>   
-        </div>
-  
+      </div>
+      </div>
     
-
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script
 			  src="https://code.jquery.com/jquery-3.4.1.min.js"
 			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-			  crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
     <script>
       var temps = "<%= temps %>".split(",");
       var hums = "<%= hums %>".split(",");
@@ -105,12 +118,11 @@
       var soils3 = "<%= soils3 %>".split(",");
       var soils4 = "<%= soils4 %>".split(",");
       var datimes = "<%= datimes %>".split(",");
-      
+      //create graph for temperature
       var ctx1 = document.getElementById('chartTemp').getContext('2d');
       var chart1 = new Chart(ctx1, {
         // The type of chart we want to create
         type: 'line',
-
         // The data for our dataset
         data: {
           labels: datimes,
@@ -123,14 +135,12 @@
       },
       // Configuration options go here
       options: {}
-    }); 
+      }); 
+      //create graph for humidity
       var humi;
       var ctx2 = document.getElementById('chartHum').getContext('2d');
       var chart2 = new Chart(ctx2, {
-        // The type of chart we want to create
         type: 'line',
-
-        // The data for our dataset
         data: {
           labels: datimes,
           datasets: [{
@@ -140,16 +150,13 @@
               data: hums
           }]
       },
-      // Configuration options go here
       options: {}
-    }); 
+      }); 
+      //create graph for soil moisture sensor 1 and 2
       var soil;
       var ctx3 = document.getElementById('chartSoil').getContext('2d');
       var chart3 = new Chart(ctx3, {
-        // The type of chart we want to create
         type: 'line',
-
-        // The data for our dataset
         data: {
           labels: datimes,
           datasets: [{
@@ -168,16 +175,13 @@
           }]
           
       },
-      // Configuration options go here
       options: {}
-    }); 
+      }); 
+      //create graph for soil moisture sensor 3 and 4
       var water;
       var ctx4 = document.getElementById('chartWater').getContext('2d');
       var chart4 = new Chart(ctx4, {
-        // The type of chart we want to create
         type: 'line',
-
-        // The data for our dataset
         data: {
           labels: datimes,
           datasets: [{
@@ -185,98 +189,176 @@
               fill: false,
               borderColor: 'green',
               backgroundColor: 'green',
-              data: soils2
+              data: soils3
           },{
               label: 'Vlhkosť pôdy 4 [%]',
               fill: false,
               borderColor: 'brown',
               backgroundColor: 'brown',
-              data: soils2
+              data: soils4
           }]
       },
-      // Configuration options go here
       options: {}
-    }); 
-    
-
-    $( "#button1" ).click(function() {
+      }); 
+      //buttton to change state of door
+      $( "#button1" ).click(function() {
       console.log('btn1');
-
-      fetch('/control1', {method: 'POST'})
-        .then(function(response) {
-          if(response.ok) {
-            console.log('open ok');
-            return;
-          }
-          throw new Error('Request failed.');
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    });
-    
-    $( "#button2" ).click(function() {
+      $.ajax({
+        url: '/control1',
+        type: "POST",
+        data: {
+        },
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            console.log("change door state");
+        },
+        error: function (error) {
+            console.log(`Error ${error}`);
+        }
+      });
+      });
+      //buttton to change state of window
+      $( "#button2" ).click(function() {
       console.log('btn2');
-
-      fetch('/control2', {method: 'POST'})
-        .then(function(response) {
-          if(response.ok) {
-            console.log('open ok');
-            return;
-          }
-          throw new Error('Request failed.');
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    });
-    
-    $( "#button3" ).click(function() {
+      $.ajax({
+        url: '/control2',
+        type: "POST",
+        data: {
+        },
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            console.log("change window state");
+        },
+        error: function (error) {
+            console.log(`Error ${error}`);
+        }
+      });
+      });
+      //buttton to water greenhouse
+      $( "#button3" ).click(function() {
       console.log('btn3');
+      $.ajax({
+        url: '/control3',
+        type: "POST",
+        data: {
+        },
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            console.log("water");
+        },
+        error: function (error) {
+            console.log(`Error ${error}`);
+        }
+      });
+      });
+      //send data from door form
+      $( "#doorSub" ).click(function() {
+      var timeo = document.getElementById("timeOpen1").value;
+      var timec = document.getElementById("timeClose1").value;
+      var mint = document.getElementById("minTemp1").value;
+      $.ajax({
+        url: '/door_set',
+        type: "POST",
+        data: {
+            open_time: timeo,
+            close_time: timec,
+            min_temp: mint
+        },
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (error) {
+            console.log(`Error ${error}`);
+        }
+      });
+      });
+      //send data from window form
+      $( "#windowSub" ).click(function() {
+      var timeo = document.getElementById("timeOpen2").value;
+      var timec = document.getElementById("timeClose2").value;
+      var mint = document.getElementById("minTemp2").value;
+      $.ajax({
+        url: '/window_set',
+        type: "POST",
+        data: {
+            open_time: timeo,
+            close_time: timec,
+            min_temp: mint
+        },
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (error) {
+            console.log(`Error ${error}`);
+        }
+      });
+      });
+      //send data from water form
+      $( "#waterSub" ).click(function() {
+      var soil = document.getElementById("minSoil").value;
+      var time = document.getElementById("waterTime").value;
+      $.ajax({
+        url: '/water_set',
+        type: "POST",
+        data: {
+            water_time: time,
+            min_hum: soil
+        },
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (error) {
+            console.log(`Error ${error}`);
+        }
+      });
+      });
 
-      fetch('/control3', {method: 'POST'})
-        .then(function(response) {
-          if(response.ok) {
-            console.log('open ok');
-            return;
+      setInterval(function() {
+        //get new data from db
+      $.ajax({
+          url: '/state1',
+          type: "GET",
+          dataType: "json",
+          success: function (data) { 
+            //set values on page
+            document.getElementById("timeOpe1").innerHTML = data.opTime1;
+            document.getElementById("timeClos1").innerHTML = data.clTime1; 
+            document.getElementById("minTem1").innerHTML = data.minTemp1;
+            document.getElementById("timeOpe2").innerHTML = data.opTime2;
+            document.getElementById("timeClos2").innerHTML = data.clTime2;
+            document.getElementById("minTem2").innerHTML = data.minTemp2;
+            document.getElementById("waterTim").innerHTML = data.waTime;
+            document.getElementById("minSoi").innerHTML = data.minSoil;
+            //set button names and state of door and window
+            if(data.motor1 === "open"){
+              document.getElementById("motor1").innerHTML = "otvorené";
+              document.getElementById("button1").innerHTML = "Zavrieť";
+            }
+            if(data.motor1 === "close"){
+              document.getElementById("motor1").innerHTML = "zatvorené";
+              document.getElementById("button1").innerHTML = "Otvoriť";
+            }
+            if(data.motor2 === "open"){
+              document.getElementById("motor2").innerHTML = "otvorené";
+              document.getElementById("button2").innerHTML = "Zavrieť";
+            }
+            if(data.motor2 === "close"){
+              document.getElementById("motor2").innerHTML = "zatvorené";
+              document.getElementById("button2").innerHTML = "Otvoriť";
+            }
+              console.log(data);
+          },
+          error: function (error) {
+              console.log(`Error ${error}`);
           }
-          throw new Error('Request failed.');
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    });
-
-    setInterval(function() {
-      fetch('/state1', {method: 'GET'})
-        .then(function(response) {
-          if(response.ok) return response.json();
-          throw new Error('Request failed.');
-        })
-        .then(function(data) {
-          if(data.motor1 === "open"){
-            document.getElementById("motor1").innerHTML = "Aktuálne: otvorené";
-            document.getElementById("button1").innerHTML = "Zavrieť";
-          }
-          if(data.motor1 === "close"){
-            document.getElementById("motor1").innerHTML = "Aktuálne: zatvorené";
-            document.getElementById("button1").innerHTML = "Otvoriť";
-          }
-          if(data.motor2 === "open"){
-            document.getElementById("motor2").innerHTML = "Aktuálne: otvorené";
-            document.getElementById("button2").innerHTML = "Zavrieť";
-          }
-          if(data.motor2 === "close"){
-            document.getElementById("motor2").innerHTML = "Aktuálne: zatvorené";
-            document.getElementById("button2").innerHTML = "Otvoriť";
-          }
-          console.log(data);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    }, 1000);
-
+      });
+      }, 2000);
     </script>
   </body>
 </html>
