@@ -93,8 +93,8 @@ express()
             {
               datimes.push(body.datetime);
               console.log(datimes);
-              const sorted = datimes.sort();
-              console.log(sorted);
+              //const sorted = datimes.sort();
+              //console.log(sorted);
             }
           })
         }     
